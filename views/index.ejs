@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>C21 Blog</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1>C21 簡易ブログ</h1>
+
+    <!-- 検索フォーム -->
+    <section>
+      <h2>検索</h2>
+      <form action="/search" method="POST">
+        <input
+          type="text"
+          name="keyword"
+          placeholder="キーワードを入力"
+          required
+        />
+        <button type="submit">検索</button>
+      </form>
+    </section>
+
+    <hr />
+
+    <!-- 新規投稿フォーム -->
+    <section>
+      <h2>新しい記事を投稿</h2>
+      <form action="/" method="POST">
+        <div>
+          <label>タイトル：</label>
+          <input type="text" name="title" required />
+        </div>
+        <div>
+          <label>投稿日：</label>
+          <input type="date" name="postedAt" required />
+        </div>
+        <div>
+          <label>内容：</label><br />
+          <textarea name="content" rows="5" cols="40" required></textarea>
+        </div>
+        <button type="submit">投稿する</button>
+      </form>
+    </section>
+
+    <hr />
+
+    <!-- 📚 投稿一覧 -->
+    <section>
+      <h2>投稿一覧</h2>
+      <% if (posts.length === 0) { %>
+      <p>まだ記事がありません。</p>
+      <% } else { %>
+      <ul>
+        <% posts.forEach(function(post) { %>
+        <li style="margin-bottom: 1rem;">
+          <h3><%= post.title %></h3>
+          <p>
+            投稿日：
+            <%= post.postedAt.toLocaleDateString("ja-JP") %>
+          </p>
+          <pre><%= post.content %></pre>
+        </li>
+        <% }) %>
+      </ul>
+      <% } %>
+    </section>
+  </body>
+</html>

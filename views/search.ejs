@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>検索結果</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1>検索結果</h1>
+
+    <p>
+      キーワード：<strong><%= keyword %></strong>
+    </p>
+
+    <% if (posts.length === 0) { %>
+    <p>該当する記事はありませんでした。</p>
+    <% } else { %>
+    <ul>
+      <% posts.forEach(function(post) { %>
+      <li style="margin-bottom: 1rem;">
+        <h3><%= post.title %></h3>
+        <p>
+          投稿日：
+          <%= post.postedAt.toLocaleDateString("ja-JP") %>
+        </p>
+        <pre><%= post.content %></pre>
+      </li>
+      <% }) %>
+    </ul>
+    <% } %>
+
+    <form action="/" method="GET">
+      <button type="submit">メインページへ戻る</button>
+    </form>
+  </body>
+</html>
